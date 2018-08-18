@@ -1,0 +1,9 @@
+				<!-- Identificação do rodapé -->
+				<div class="row rodape"> 
+					<p>© 2017 Grupo de Pesquisa em Educação Tecnológica - DAELN</p></br>
+					<a class="fa fa-facebook-square"	target="_blanck" href="https://www.facebook.com/eletronica.ifsc"></a> 
+					<a class="fa fa-youtube-square"		target="_blanck" href="https://www.youtube.com/user/EletronicaIFSC"></a> 
+					<a class="fa fa-google-plus-square"	target="_blanck" href="https://plus.google.com/101294312921190812200"></a> 
+					<a class="fa fa-instagram"			target="_blanck" href="https://www.instagram.com/explore/locations/218004176/ifsc-campus-florianopolis/"></a> 
+					<a class="fa fa-twitter-square"		target="_blanck" href="https://twitter.com/ifscfloripa"></a> 
+				</div>

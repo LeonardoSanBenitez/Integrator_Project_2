@@ -1,0 +1,51 @@
+<?php
+	$historico = array();
+	//include "banco.php";
+
+	if (isset($_GET['index'])) {	//tem um jeito melhor de verificar isso 
+		$_resposta = array();
+		$_resposta['index'] = $_GET['index'];
+		$_resposta['equipe'] = $_GET['equipe'];
+		$_resposta['local'] = $_GET['local'];
+		$_resposta['volume'] = $_GET['volume'];
+		$_resposta['cor'] = $_GET['cor'];
+		$_resposta['data'] = $_GET['data'];
+
+		//gravar_resposta($conexao, $_resposta);
+		$historico = $_resposta;
+	}
+	
+	
+	//$historico = acessar_historico($conexao);
+	var_dump($historico);
+?>
+
+<!DOCTYPE html>
+<html>
+<body>
+	<br>
+	<h1>Histórico de respostas</h1>
+	<table>
+		<tr>
+			<th>index</th>
+			<th>R1</th>
+			<th>R2</th>
+			<th>R3</th>
+			<th>R4</th>
+			<th>R5</th>
+		</tr>
+		
+		<?php //foreach ($historico as $resposta) : ?>
+			<tr>
+				<td><?php echo $historico['index']; ?> </td>
+				<td><?php echo $historico['equipe']; ?> </td>
+				<td><?php echo $historico['local']; ?> </td>
+				<td><?php echo $historico['volume']; ?> </td>
+				<td><?php echo $historico['cor']; ?> </td>
+				<td><?php echo $historico['data']; ?> </td>
+			</tr>
+		<?php// endforeach; 
+		?>
+	</table>
+</body>
+</html>

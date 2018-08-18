@@ -1,0 +1,9 @@
+<p>
+A Ferramenta Benchmarking está constituída por Notas Explicativas e Questionário, referentes há algumas áreas e seus correspondentes indicadores, que integram Processos de Ensino e de Aprendizagem, o qual será objeto de avaliação.
+Cada questão da Ferramenta Benchmarking exige que o avaliador se posicione para uma escolha, numa escala entre 1 e 5, em relação aos indicadores apresentados e descritos em cada área, para serem avaliados/medidos.
+Nessas questões são descritas situações típicas para pontuações 1, 3, e 5 escores, para cada um dos indicadores relativos a uma determinada área.
+Quando houver diferença sobre uma determinada realidade, ou seja, quando um contexto estiver mais avançado que outro e não se conseguir perceber esse em relação ao anterior, é melhor estabelecer uma posição intermediária entre duas situações descritas, em face de caracterizar nem uma situação nem outra e, assim sendo, deve-se pontuar 2 ou 4 escores.
+<br><img src="recursos/imagens/exemplo.jpg"></img><br>
+É importante pontuar a realidade atual e não conforme uma situação esperada relacionada a planos e projetos em andamento, em face de ainda esses não terem alcançado os resultados planejados.
+O Benchmarking só terá valor se as respostas refletirem, fidedignamente, as verdadeiras práticas e as performances obtidas em relação ao processo de ensino e de aprendizagem “benchmarkeado”.
+</p>
