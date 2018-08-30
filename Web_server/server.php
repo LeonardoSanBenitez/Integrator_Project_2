@@ -1,6 +1,6 @@
 <?php
 	$historico = array();
-	//include "banco.php";
+	include "dataBase.php";
 
 	if (isset($_GET['index'])) {	//tem um jeito melhor de verificar isso 
 		$_resposta = array();

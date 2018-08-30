@@ -23,8 +23,6 @@ char state = 0; // To the state machine
 /*---------------------------------------------------------------------
   FUNCTION MAIN
 ---------------------------------------------------------------------*/
-int infra_1=0;
-
 void setup() {
   myservo.attach(9);
   pinMode(INFRA_1, INPUT);
@@ -41,21 +39,16 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Welcome to PI-2!!!");
   Serial.println("waiting...");
-  delay(100);
 }
 
 void loop() {
-  delay(20);
   switch (state) {
     /* State Wait: will do nothing until the infrared sensor 1 (positioned in the begin of the conveyor) detect the object*/
     case WAIT:
-      infra_1 = analogRead(INFRA_1);
-      //Serial.println(infra_1);
-      if (analogRead(infra_1) < 500) {
+      if (analogRead(INFRA_1) <500) {
         Serial.println("Object detected");
-        Serial.println(analogRead(INFRA_1));
         sound_alert();
-        state = MOVE_IN;
+        aXWWXXSDA
       }
       break;
     /* State Move In: just accionates the DC motor until the object reach the infrared sensor 2*/
@@ -96,8 +89,8 @@ void loop() {
 ---------------------------------------------------------------------*/
 void move_motor() {
   static int pos = 0;    // variable to store the servo position
-  static int i = 5;
-  if (pos >= 180) i  =-5; else if (pos <= 0)i = 5;
+  static int i = 1;
+  if (pos >= 180) i = -1; else if (pos <= 0)i = 1;
   myservo.write(pos += i);
   delay (15);
 }

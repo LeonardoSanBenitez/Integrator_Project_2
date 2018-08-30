@@ -66,7 +66,7 @@ p{
 	margin-top: 10px;
 	margin-bottom: -10px;
 	font-size: 1.2em;
-	color: white;
+	color: #f2f2f2;
 }
 @media (max-width: 480px){
 	.rodape p{
@@ -76,7 +76,7 @@ p{
 .rodape a{
 	font-size: 2.5em;
 	margin: 0px 3px 3px 3px;
-	color: white;
+	color: #f2f2f2;
 	text-decoration:none;
 	transition: 0.2s;
 }
@@ -99,12 +99,12 @@ h1{
 .btn-primary{
 	background-color: #03447c;
 	border-color: #03447c;
-	color: f2f2f2;
+	color: #f2f2f2;
 	float: right;
 }
 .btn-primary:hover{
 	background-color: #02284A;	
-		color: f2f2f2;
+		color: white;
 }
 
 /***************************************************************
@@ -131,7 +131,7 @@ section#data-hub{
 }
 #data-hub tbody{
   background-image: linear-gradient(to right, #02284A, #03447c);
-	color: f2f2f2;
+	color: white;
 	font-size: 1.05em;
 }
 #data-hub tbody tr:hover{
@@ -143,4 +143,127 @@ section#data-hub{
 ***************************************************************/
 .modal-body p{
 	text-align	: left;
+}
+
+
+/***************************************************************
+****                        BANNER                          ****
+***************************************************************/
+.banner{
+	background: url(../../model/bann.jpg) no-repeat 0px 0px;
+	background-size:cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	-moz-background-size: cover;
+	min-height: 790px;
+}
+.banner-text {
+    width: 65%;
+    margin: 10.3em auto 0;
+    padding: 3em;
+    float: right;
+    text-align: right;
+    background: rgba(0, 0, 0, 0.63);
+}
+.callbacks_nav {
+    top: 90%!important;
+}
+.banner-text h3 {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    margin: 0 auto;
+    line-height: 45px;
+    font-family: 'Raleway', sans-serif;
+}
+.banner-text h4 {
+    color: #fff;
+    font-size: 29.5px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    margin: 0 auto;
+    font-family: 'Raleway', sans-serif;
+}
+.banner-text p {
+    color: #c2f9c4;
+    margin-top: 20px;
+    /* background: rgba(0, 0, 0, 0.58); */
+    line-height: 29px;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+/***************************************************************
+****                      SLIDER                            ****
+***************************************************************/
+#slider3,#slider4,#slider5  {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  margin: 0 auto;
+}
+.rslides_tabs {
+  list-style: none;
+  padding: 0;
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+  -moz-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+  /*-- w3layouts --*/
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);
+  font-size: 18px;
+  list-style: none;
+  margin: 0 auto 50px;
+  max-width: 540px;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+}
+.rslides_tabs li {
+  display: inline;
+  margin-right: 1px;
+}
+.rslides_tabs a {
+  width: auto;
+  line-height: 20px;
+  padding: 9px 20px;
+  height: auto;
+  background: transparent;
+  display: inline;
+}
+.rslides_tabs li:first-child {
+  margin-left: 0;
+}
+.rslides_tabs .rslides_here a {
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-weight: bold;
+}
+.events {
+  list-style: none;
+}
+.callbacks_container {
+  position: relative;
+  width: 100%;
+}
+.callbacks {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.callbacks li {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+
+/*--------------------------------------------*/
+.carousel-inner .item {
+	overflow:hidden;
+	max-height:400px;
 }

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br" ng-app="bench">
+<html lang="pt-br">
 	<head>
 		<!-- Definições Iniciais -->
 		<title>PI-2 hub</title>
@@ -18,10 +18,11 @@
 		<link rel="stylesheet" href="recursos/css/template.css" />
 	</head>
 	
-	<body ng-controller="bench_controller">
+	<body>
 		<div class="geral" id="app">
-			<!-- Navbar -->
-			<nav ng-include="'recursos/html/navbar.html'" class="navbar navbar-default"></nav>
+			<!-- Navbar 
+			<nav ng-include="'recursos/html/navbar.html'" class="navbar navbar-default"></nav>-->
+			<nav class="navbar navbar-default"><?php include "recursos/html/navbar.html"; ?></nav>
 			
 			<div class="container-fluid wrap">
 				<!-- Título -->
@@ -42,10 +43,10 @@
 					  <tbody>
 						<tr v-for="data in json">
 						  <td>{{data.team}}</td>
-						  <td>{{data.local}}</td>
+						  <td>{{data.instaled}}</td>
 						  <td>{{data.volume}}</td>
-						  <td>{{data.color}}</td>
-						  <td>{{data.date}}</td>
+						  <td>{{translateColor(data.color)}}</td>
+						  <td>{{data.received}}</td>
 						</tr>
 					  </tbody>
 					</table>
@@ -78,15 +79,15 @@
 				</section>		
 			</div>
 				
-			<footer ng-include="'recursos/html/rodape.html'" class="container-fluid rodape"></footer>
+			<!-- <footer ng-include="'recursos/html/rodape.html'" class="container-fluid rodape"></footer> -->
+			<footer class="container-fluid rodape"> <?php include "recursos/html/rodape.html"; ?> </footer>
 		</div>
 		
 		<!-- Java Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>		
 		<script src="recursos/js/jquery-radar-plus.js"></script>		
- 		<script src="recursos/js/angular_controller.js"></script>		
+ 		<script src="recursos/js/vue_controller.js"></script>		
 	</body>
 </html>

@@ -1,10 +1,22 @@
 <?php 
+////////include "dataBase.php";
+
+//date_default_timezone_set ("America/Brasilia");
+//date.timezone = America/Brasilia;
+$date = date("Y-m-d h:i:s");
+//$date = "YYYY-MM-DD HH:MI:SS";
 $json = '[
-{"team": "Benitez", "local":"LPAE", "volume":"900ml", "color":"red", "date":"16-08-2018 19:36"},
-{"team": "Elvis", "local":"LPT", "volume":"850ml", "color":"blue", "date":"16-08-2018 19:35"},
-{"team": "Benitez", "local":"LPAE", "volume":"875ml", "color":"red", "date":"15-08-2018 19:32"},
-{"team": "Benitez", "local":"LPAE", "volume":"870ml", "color":"red", "date":"15-08-2018 19:21"},
-{"team": "Ednei", "local":"LD1", "volume":"300ml", "color":"blue", "date":"15-08-2018 15:01"},
-{"team": "Ednei", "local":"LD1", "volume":"550ml", "color":"green", "date":"15-08-2018 15:00"}
+{"team": "Benitez", "local":"LPAE", "volume":"900ml", "color":"1", "date":"'.$date.'"},
+{"team": "Elvis", "local":"LPT", "volume":"850ml", "color":"2", "date":"'.$date.'"},
+{"team": "Benitez", "local":"LPAE", "volume":"875ml", "color":"1", "date":"'.$date.'"},
+{"team": "Benitez", "local":"LPAE", "volume":"870ml", "color":"1", "date":"'.$date.'"},
+{"team": "Ednei", "local":"LD1", "volume":"300ml", "color":"2", "date":"'.$date.'"},
+{"team": "Ednei", "local":"LD1", "volume":"550ml", "color":"3", "date":"'.$date.'"}
 ]';
-echo $json; ?>
+echo $json; 
+
+
+
+//var_dump(search_data($conexao));
+////////print json_encode(searchData($connection));
+?>

@@ -1,0 +1,17 @@
+change orange color
+diminuir transtion do logo
+adicionar transition: 0,02s do tableLine:hover
+ajustar margin-top do button quando width<768px
+adicionar página "home" e "fotos"
+Melhor o brand PI2
+
+CREATE TABLE raw_data (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    team VARCHAR(20) NOT NULL,
+    instaled VARCHAR(20) NOT NULL,
+    volume VARCHAR(8) NOT NULL,
+    color INTEGER(2),
+    received DATETIME
+);
+
+INSERT INTO `raw_data` (`id`, `team`, `instaled`, `volume`, `color`, `received`) VALUES (NULL, 'benitez', 'LPT', '730ml', '1', '2018-08-23 04:18:00');
