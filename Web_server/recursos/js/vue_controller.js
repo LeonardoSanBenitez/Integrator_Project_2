@@ -1,4 +1,4 @@
-﻿new Vue({
+new Vue({
     el: '#app',
     data: {
         json: null
@@ -10,7 +10,6 @@
         $.getJSON('API_data_request.php', function (json) {
             _this.json = json;
         });
-
 		
     },
 	methods: {
@@ -23,6 +22,4 @@
 			}
 		}
 	}
-	
-	
 });

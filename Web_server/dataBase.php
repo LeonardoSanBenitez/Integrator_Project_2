@@ -1,20 +1,25 @@
 <?php
-	///Database variables
-	$bdServer = '127.0.0.1';
-	$bdUser = 'root';
-	$bdPassword = '';
-	$bdName = 'receiveddata';
+	/*------------------------------------------------------------------*/
+	function connectDB(){
+		///Database variables
+		$bdServer = '127.0.0.1';
+		$bdUser = 'root';
+		$bdPassword = '';
+		$bdName = 'receiveddata';
 	
-	///Connection
-	$connection = mysqli_connect($bdServer, $bdUser, $bdPassword, $bdName);
-	if (mysqli_connect_errno($connection)) {
-		echo "Problemas para conectar no banco. Verifique os dados!";
-		die();
+		///Connection
+		$_connection = mysqli_connect($bdServer, $bdUser, $bdPassword, $bdName);
+		if (mysqli_connect_errno($_connection)) {
+			echo "Problemas para conectar no banco. Verifique os dados!";
+			die();
+		}
+		return $_connection;
 	}
 	
-	/// Main function
-	function searchData($_connection) {
-		$sqlSelect = 'SELECT * FROM raw_data';
+	/*------------------------------------------------------------------*/
+	/// Devolve os dados contidos na tabela 
+	function searchData($_connection, $_limit) {
+		$sqlSelect = 'SELECT * FROM `raw_data` ORDER BY id DESC LIMIT ' . $_limit . ' ';
 		$result = mysqli_query($_connection, $sqlSelect);
 		$data = array();
 		while ($line = mysqli_fetch_assoc($result)) {
@@ -23,10 +28,12 @@
 		return $data;
 	}
 	
+	/*------------------------------------------------------------------*/
+	// Insere os dados na tabela
 	function insertData($_connection, $_data){
 		$sqlInsert = "
-			INSERT INTO tarefas
-			(team, instaled, volume, color, date)
+			INSERT INTO raw_data
+			(team, instaled, volume, color, received)
 			VALUES
 			(
 				'{$_data['team']}',
@@ -36,9 +43,20 @@
 				'{$_data['date']}'
 			)
 		";
-	
-		if (mysqli_query($_connection, $sqlInsert)) return "sucess";
+		echo "<br> $sqlInsert <br>";
 		
-		else return "fail";
+		mysqli_query($_connection, $sqlInsert);
+		//if (mysqli_query($_connection, $sqlInsert)) return "sucess";
+		
+		//else return "fail";
 	}
+	
+	/*------------------------------------------------------------------*/
+	function closeDB($_conexão){
+		mySQLi_close ($_conexão);
+		//TODO: verify error
+	}
+	
+	
+	//TODO: close conection 
 ?>

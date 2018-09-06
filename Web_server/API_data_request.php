@@ -1,6 +1,7 @@
 <?php 
-////////include "dataBase.php";
+include "dataBase.php";
 
+/*
 //date_default_timezone_set ("America/Brasilia");
 //date.timezone = America/Brasilia;
 $date = date("Y-m-d h:i:s");
@@ -14,9 +15,9 @@ $json = '[
 {"team": "Ednei", "local":"LD1", "volume":"550ml", "color":"3", "date":"'.$date.'"}
 ]';
 echo $json; 
+*/
 
-
-
-//var_dump(search_data($conexao));
-////////print json_encode(searchData($connection));
+$connection = connectDB();
+print json_encode(searchData($connection, 5));
+		closeDB($connection);
 ?>

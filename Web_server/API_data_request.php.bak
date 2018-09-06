@@ -1,9 +1,10 @@
 <?php 
-////////include "dataBase.php";
+include "dataBase.php";
 
+/*
 //date_default_timezone_set ("America/Brasilia");
 //date.timezone = America/Brasilia;
-//$date = date("Y-m-d h:i:s");
+$date = date("Y-m-d h:i:s");
 //$date = "YYYY-MM-DD HH:MI:SS";
 $json = '[
 {"team": "Benitez", "local":"LPAE", "volume":"900ml", "color":"1", "date":"'.$date.'"},
@@ -14,8 +15,8 @@ $json = '[
 {"team": "Ednei", "local":"LD1", "volume":"550ml", "color":"3", "date":"'.$date.'"}
 ]';
 echo $json; 
+*/
 
 
-
-//var_dump(search_data($conexao));
-////////print json_encode(searchData($connection));?>
+print json_encode(searchData($connection, 5));
+?>
