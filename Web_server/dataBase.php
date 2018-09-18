@@ -2,10 +2,10 @@
 	/*------------------------------------------------------------------*/
 	function connectDB(){
 		///Database variables
-		$bdServer = '127.0.0.1';	//Localhost
-		$bdUser = 'root';			//id6767071_benitez
-		$bdPassword = '';			//142130leo
-		$bdName = 'receiveddata';	//id6767071_receiveddata
+		$bdServer = 'Localhost'; 					//'127.0.0.1';
+		$bdUser = 'id6767071_benitez';				//'root';
+		$bdPassword = '142130leo';					//'';
+		$bdName = 'id6767071_receiveddata';			//'receiveddata';
 	
 		///Connection
 		$_connection = mysqli_connect($bdServer, $bdUser, $bdPassword, $bdName);
