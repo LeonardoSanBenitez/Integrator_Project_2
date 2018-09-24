@@ -4,13 +4,8 @@ new Vue({
         json: null
     },
     created: function () {
-        var _this = this;
-
-		//TODO: set time out
-        $.getJSON('API_data_request.php', function (json) {
-            _this.json = json;
-        });
-		
+		this.requestData();
+		window.setInterval(this.requestData, 3000);
     },
 	methods: {
 		translateColor(color){
@@ -20,6 +15,13 @@ new Vue({
 				case "3": return "green"; break;
 				default: return "null"; 
 			}
+		},
+		requestData(){
+			var _this = this;
+			$.getJSON('API_data_request.php', function (json) {
+				_this.json = json;
+			});
+			console.log("Data requested");
 		}
 	}
 });
