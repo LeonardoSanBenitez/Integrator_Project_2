@@ -1,6 +1,6 @@
 #include <Ultrasonic.h>     //Carrega a biblioteca do sensor ultrassonico
 #include <LiquidCrystal.h>  //Carrega a biblioteca LiquidCrystal
-#include <SPI.h>			//to ethernet
+#include <SPI.h>      //to ethernet
 #include <Ethernet.h>
 #include "pinout.h"
 
@@ -25,21 +25,19 @@ float cmMsec;
 
 char team[]="Elvis";
 char instaled[]="LTPA";
-int volume= 50;
-char color[] = "2";
-unsigned long lastConnectionTime = 0;           		// last time you connected to the server, in milliseconds
+int volume;
+int color;
 
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };	// assign a MAC address for the ethernet controller.
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  // assign a MAC address for the ethernet controller.
 char server[] = "pi2engenharia.000webhostapp.com";
-IPAddress ip(145, 14, 145, 236);						// Set the static IP address to use if the DHCP fails to assign
-IPAddress myDns(192, 168, 0, 1);
+IPAddress ip(145, 14, 145, 236);            // Set the static IP address to use if the DHCP fails to assign
+//IPAddress myDns(192, 168, 0, 1);
 
 
 /** INITIALIZATIONS **/
-Ultrasonic ultrasonic(pino_trigger, pino_echo); 		//Inicializa o sensor nos pinos definidos acima
-LiquidCrystal lcd(42, 44, 46, 48, 50, 52);    			//Define os pinos que serão utilizados para ligação ao display
 EthernetClient client;
-
+LiquidCrystal lcd(30, 32, 34, 36, 38, 40);          //Define os pinos que serão utilizados para ligação ao display
+Ultrasonic ultrasonic(pino_trigger, pino_echo);     //Inicializa o sensor nos pinos definidos acima
 /*---------------------------------------------------------------------
   SETUP
 ---------------------------------------------------------------------*/
@@ -57,32 +55,18 @@ void setup() {
 
   analogWrite(MOTOR_A, 0);
 
-  Ethernet.init(10);  // Most Arduino shields
+//  Ethernet.init(10);  // Most Arduino shields
   Serial.begin(9600);
   while (!Serial) {;}
 
   /** START THE ETHERNET CONNECTION **/
-  Serial.println("Initialize Ethernet with DHCP:");
+  // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
-    // Check for Ethernet hardware present
-    if (Ethernet.hardwareStatus() == EthernetNoHardware) {
-      Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
-      while (true) {
-        delay(1); // do nothing, no point running without Ethernet hardware
-      }
-    }
-    if (Ethernet.linkStatus() == LinkOFF) {
-      Serial.println("Ethernet cable is not connected.");
-    }
     // try to congifure using IP address instead of DHCP:
-    Ethernet.begin(mac, ip, myDns);
-    Serial.print("My IP address: ");
-    Serial.println(Ethernet.localIP());
-  } else {
-    Serial.print("  DHCP assigned IP ");
-    Serial.println(Ethernet.localIP());
+    Ethernet.begin(mac, ip);
   }
+  // give the Ethernet shield a second to initialize:
   delay(1000);
   
   /** WELCOME PRINT **/
@@ -92,9 +76,6 @@ void setup() {
   lcd.begin(16, 2);
   lcd.clear();   // clear old screen data
   lcd.print ("PI-2 Elvis / Leo ");
-  
- 
-
 }
 
 /*---------------------------------------------------------------------
@@ -128,18 +109,19 @@ void loop() {
     case READ_COLOR:
       Serial.print("Color: ");
       Serial.println(read_color() == 1 ? "red" : "blue");
+      color = read_color();
       state = READ_HEIGHT;
       break;
     
     /** State read height: just call the read_height() function. Does not calculates the volume, that is done in the server */
     case READ_HEIGHT:
-      cmMsec = ultrasonic.distanceRead();
+      volume = ultrasonic.distanceRead();
       lcd.setCursor(0, 1);                  // (column 0) of the second line (line 1):
       lcd.clear();
       lcd.print ("Dist: ");                 //print in LCD
-      lcd.print (cmMsec);        
+      lcd.print (volume);        
       Serial.print("Altura lida (em cm):"); //Print in serial
-      Serial.println(cmMsec);
+      Serial.println(volume);
       delay(1000); 
       analogWrite(MOTOR_A, MOTOR_ON);
     state = MOVE_OUT;
@@ -149,11 +131,12 @@ void loop() {
     case MOVE_OUT:
       if (analogRead(INFRA_3) < 200) {
         analogWrite(MOTOR_A, MOTOR_OFF);
-        Serial.println("Process finished\n");
         lcd.setCursor(0, 1);         // (column 0) of the second line (line 1):
         lcd.clear();
         lcd.print ("Process finished");
         sound_alert();
+        httpRequest();
+        Serial.println("Process finished\n");
         state = WAIT;
       }
   }
@@ -202,6 +185,45 @@ int read_color() {
 //  }
 //  return analogRead(POT);
 //}
+
+
+
+
+
+void httpRequest() {
+  // close any connection before send a new request. This will free the socket on the WiFi shield
+  client.stop();
+
+  Serial.print("connecting...");
+
+  // if you get a connection, report back via serial:
+  if (client.connect(server, 80)) {
+    Serial.println("connected!");
+    // Make a HTTP request:
+    client.print("GET /API_data_receive.php?");
+    client.print("team=");
+    client.print(team);
+    client.print("&instaled=");
+    client.print(instaled);
+    client.print("&volume=");
+    client.print(volume);
+    client.print("ml");
+    client.print("&color=");
+    client.print(color);
+    client.println(" HTTP/1.1");
+    client.print("Host: ");
+    client.println(server);
+    client.println("User-Agent: arduino-ethernet");
+    client.println("Connection: close");
+    client.println();
+    Serial.println("Dados enviados para o servidor");
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+
 
 
 

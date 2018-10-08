@@ -46,34 +46,16 @@ unsigned long lastConnectionTime = 0;           // last time you connected to th
 
 //SETUP
 void setup() {
-  Ethernet.init(10);  // Most Arduino shields
-  Serial.begin(9600);
+    Serial.begin(9600);
   while (!Serial) {;}// wait for serial port to connect. Needed for native USB port only
 
-  // start the Ethernet connection:
-  Serial.println("Initialize Ethernet with DHCP:");
-  if (Ethernet.begin(mac) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP");
-    // Check for Ethernet hardware present
-    if (Ethernet.hardwareStatus() == EthernetNoHardware) {
-      Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
-      while (true) {
-        delay(1); // do nothing, no point running without Ethernet hardware
-      }
-    }
-    if (Ethernet.linkStatus() == LinkOFF) {
-      Serial.println("Ethernet cable is not connected.");
-    }
-    // try to congifure using IP address instead of DHCP:
-    Ethernet.begin(mac, ip, myDns);
-    Serial.print("My IP address: ");
-    Serial.println(Ethernet.localIP());
-  } else {
-    Serial.print("  DHCP assigned IP ");
-    Serial.println(Ethernet.localIP());
-  }
-
+  // give the ethernet module time to boot up:
   delay(1000);
+  // start the Ethernet connection using a fixed IP address and DNS server:
+  Ethernet.begin(mac, ip, myDns);
+  // print the Ethernet board/shield's IP address:
+  Serial.print("My IP address: ");
+  Serial.println(Ethernet.localIP());
 }
 
 void loop() {
