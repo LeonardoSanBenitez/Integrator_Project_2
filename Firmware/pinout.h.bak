@@ -1,0 +1,12 @@
+//Pin definitions
+#define INFRA_1 7
+#define INFRA_2 6
+#define INFRA_3 5
+
+#define BUZZER  22
+#define POT     A0
+#define MOTOR_A 10
+#define MOTOR_B 11
+
+#define pino_trigger 12 //sensor ultrassonico: (trigger no pino digital 7)
+#define pino_echo 13    //sensor ultrassonico: (echo no pino digital 8)
