@@ -43,12 +43,11 @@
 				'{$_data['date']}'
 			)
 		";
-		echo "<br> $sqlInsert <br>";
-		
-		mysqli_query($_connection, $sqlInsert);
-		//if (mysqli_query($_connection, $sqlInsert)) return "sucess";
-		
-		//else return "fail";
+
+		echo "Insert result: ";
+		//mysqli_query($_connection, $sqlInsert);
+		if (mysqli_query($_connection, $sqlInsert)) return "sucess";
+		else return "fail";
 	}
 	
 	/*------------------------------------------------------------------*/
@@ -56,7 +55,4 @@
 		mySQLi_close ($_conexão);
 		//TODO: verify error
 	}
-	
-	
-	//TODO: close conection 
 ?>

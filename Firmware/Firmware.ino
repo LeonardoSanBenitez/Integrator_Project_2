@@ -63,6 +63,7 @@ void setup() {
   lcd.begin(16, 2);         //Define o número de colunas e linhas do LCD
   lcd.print ("PI-2 Elvis / Leo ");
   Serial.println("Welcome to PI-2!!!");
+  analogWrite(MOTOR_A, MOTOR_OFF);
 }
 
 /*---------------------------------------------------------------------
@@ -73,6 +74,7 @@ void loop() {
   switch (state) {
     /** State Wait: will do nothing until the infrared sensor 1 (positioned in the begin of the conveyor) detect the object*/
     case WAIT:
+      analogWrite(MOTOR_A, MOTOR_OFF);
       if (analogRead(INFRA_1) < 200) {
         Serial.println("Object detected");
         lcd.setCursor(0, 1);         // (column 0) of the second line (line 1):
@@ -106,7 +108,7 @@ void loop() {
     
     /** State read height: just call the read_height() function. Does not calculates the volume, that is done in the server */
     case READ_HEIGHT:
-      altura = ultrasonic.distanceRead();
+      altura = 10*ultrasonic.convert(ultrasonic.timing(), Ultrasonic::CM);
       lcd.setCursor(0, 2);                  // (column 0) of the second line (line 1):
       lcd.print ("altura: ");                 //print in LCD
       lcd.print (altura);        

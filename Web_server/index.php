@@ -10,82 +10,79 @@
 		<meta name="viewport"				content="width=device-width, initial-scale=1" />
 		<meta name="robots" 				content="index,follow" />
 		<meta http-equiv="content-language"	content="pt-br" />
-		<link rel="icon"					href="recursos/imagens/favicon.ico"  type="shortcut icon" />
+		<link rel="icon"					href="view/imagens/favicon.ico"  type="shortcut icon" />
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="recursos/css/template.css" />
+		<link rel="stylesheet" href="view/css/template.css" />
 	</head>
 	
 	<body>
 		<div class="geral" id="app">
-			<!-- Navbar 
-			<nav ng-include="'recursos/html/navbar.html'" class="navbar navbar-default"></nav>-->
-			<nav class="navbar navbar-default"><?php include "recursos/html/navbar.html"; ?></nav>
+			<!-- Navbar -->
+			<nav class="navbar navbar-default"><?php include "view/html/navbar.html"; ?></nav>
 			
+			<!-- Main Content -->
 			<div class="container-fluid wrap">
 				<!-- Título -->
-				<header class="row"><h1>Projeto Integrador 2</h1></header>
+				<header class="row"><h1>Projeto Integrador 2</h1></header>	
 				
-				
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			  <!-- Indicators -->
-			  <ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-			  </ol>
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				  </ol>
 
-			  <!-- Wrapper for slides -->
-			  <div class="carousel-inner">
-				<div class="item active">
-				  <img src="https://wallpapercave.com/wp/y7MHn2V.jpg" alt="Chania">
-				  <div class="carousel-caption">
-					<h3>Projeto Integrador 2</h3>
-					<p>blablabla</p>
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+					<div class="item active">
+					  <img src="https://wallpapercave.com/wp/y7MHn2V.jpg" alt="Chania">
+					  <div class="carousel-caption">
+						<h3>Projeto Integrador 2</h3>
+						<p>blablabla</p>
+					  </div>
+					</div>
+
+					<div class="item">
+					  <img src="https://wallpapercave.com/wp/aIaQVpx.jpg" alt="Chicago">
+					  <div class="carousel-caption">
+						<h3>LPAE</h3>
+						<p>blablabla</p>
+					  </div>
+					</div>
+
+					<div class="item">
+					  <img src="https://wallpapercave.com/wp/y7MHn2V.jpg" alt="New York">
+					  <div class="carousel-caption">
+						<h3>DAELN</h3>
+						<p>blablabla</p>
+					  </div>
+					</div>
 				  </div>
+
+				  <!-- Left and right controls -->
+				  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					<span class="sr-only">Next</span>
+				  </a>
 				</div>
-
-				<div class="item">
-				  <img src="https://wallpapercave.com/wp/aIaQVpx.jpg" alt="Chicago">
-				  <div class="carousel-caption">
-					<h3>LPAE</h3>
-					<p>blablabla</p>
-				  </div>
-				</div>
-
-				<div class="item">
-				  <img src="https://wallpapercave.com/wp/y7MHn2V.jpg" alt="New York">
-				  <div class="carousel-caption">
-					<h3>DAELN</h3>
-					<p>blablabla</p>
-				  </div>
-				</div>
-			  </div>
-
-			  <!-- Left and right controls -->
-			  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-				<span class="sr-only">Previous</span>
-			  </a>
-			  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-				<span class="sr-only">Next</span>
-			  </a>
-			</div>
-
-
 			</div>
 				
-			<!-- <footer ng-include="'recursos/html/rodape.html'" class="container-fluid rodape"></footer> -->
-			<footer class="container-fluid rodape"> <?php include "recursos/html/rodape.html"; ?> </footer>
+			<!-- footer -->
+			<footer class="container-fluid rodape"> <?php include "view/html/rodape.html"; ?> </footer>
 		</div>
 		
 		<!-- Java Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>		
- 		<script src="recursos/js/vue_controller.js"></script>		
+ 		<script src="controller/vue_controller.js"></script>		
 	</body>
 </html>

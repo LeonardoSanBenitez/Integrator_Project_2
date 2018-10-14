@@ -10,20 +10,20 @@
 		<meta name="viewport"				content="width=device-width, initial-scale=1" />
 		<meta name="robots" 				content="index,follow" />
 		<meta http-equiv="content-language"	content="pt-br" />
-		<link rel="icon"					href="recursos/imagens/favicon.ico"  type="shortcut icon" />
+		<link rel="icon"					href="view/imagens/favicon.ico"  type="shortcut icon" />
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="recursos/css/template.css" />
+		<link rel="stylesheet" href="view/css/template.css" />
 	</head>
 	
 	<body>
 		<div class="geral" id="app">
-			<!-- Navbar 
-			<nav ng-include="'recursos/html/navbar.html'" class="navbar navbar-default"></nav>-->
-			<nav class="navbar navbar-default"><?php include "recursos/html/navbar.html"; ?></nav>
+			<!-- Navbar -->
+			<nav class="navbar navbar-default"><?php include "view/html/navbar.html"; ?></nav>
 			
+			<!-- Main Content -->
 			<div class="container-fluid wrap">
 				<!-- Título -->
 				<header class="row"><h1>Projeto Integrador 2</h1></header>
@@ -79,14 +79,14 @@
 				</section>		
 			</div>
 				
-			<!-- <footer ng-include="'recursos/html/rodape.html'" class="container-fluid rodape"></footer> -->
-			<footer class="container-fluid rodape"> <?php include "recursos/html/rodape.html"; ?> </footer>
+			<!-- footer -->
+			<footer class="container-fluid rodape"> <?php include "view/html/rodape.html"; ?> </footer>
 		</div>
 		
 		<!-- Java Script -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>		
- 		<script src="recursos/js/vue_controller.js"></script>		
+ 		<script src="controller/vue_controller.js"></script>		
 	</body>
 </html>
