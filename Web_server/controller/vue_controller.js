@@ -8,14 +8,21 @@ new Vue({
 		window.setInterval(this.requestData, 3000);
     },
 	methods: {
-		translateColor(color){
-			switch(color){
+		teste(){
+            return "red";
+        },
+        testando (){
+
+        },
+        translateColor(color){
+            console.log ("oi??");
+            switch(color){
 				case "1": return "red"; break;
 				case "2": return "blue"; break;
 				case "3": return "green"; break;
-				default: return "null"; 
+				default: return "nullo ";
 			}
-		},
+},
 		requestData(){
 			var _this = this;
 			$.getJSON('API_data_request.php', function (json) {

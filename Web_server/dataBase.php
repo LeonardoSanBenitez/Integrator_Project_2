@@ -2,10 +2,10 @@
 	/*------------------------------------------------------------------*/
 	function connectDB(){
 		///Database variables
-		$bdServer = 'Localhost'; 					//'127.0.0.1';
-		$bdUser = 'id6767071_benitez';				//'root';
-		$bdPassword = '142130leo';					//'';
-		$bdName = 'id6767071_receiveddata';			//'receiveddata';
+		$bdServer = '127.0.0.1';//'Localhost'; 					//'127.0.0.1';
+		$bdUser = 'root';//'id6767071_benitez';				//'root';
+		$bdPassword = '';//'142130leo';					//'';
+		$bdName = 'receiveddata';//'id6767071_receiveddata';			//'receiveddata';
 	
 		///Connection
 		$_connection = mysqli_connect($bdServer, $bdUser, $bdPassword, $bdName);
@@ -19,7 +19,7 @@
 	/*------------------------------------------------------------------*/
 	/// Devolve os dados contidos na tabela 
 	function searchData($_connection, $_limit) {
-		$sqlSelect = 'SELECT * FROM `raw_data` ORDER BY id DESC LIMIT ' . $_limit . ' ';
+		$sqlSelect = 'SELECT * FROM `raw_data_2` ORDER BY id DESC LIMIT ' . $_limit . ' ';
 		$result = mysqli_query($_connection, $sqlSelect);
 		$data = array();
 		while ($line = mysqli_fetch_assoc($result)) {
@@ -32,14 +32,16 @@
 	// Insere os dados na tabela
 	function insertData($_connection, $_data){
 		$sqlInsert = "
-			INSERT INTO raw_data
-			(team, instaled, volume, color, received)
+			INSERT INTO raw_data_2
+			(team, instaled, volume, color_red, color_green, color_blue, received)
 			VALUES
 			(
 				'{$_data['team']}',
 				'{$_data['instaled']}',
 				'{$_data['volume']}',
-				'{$_data['color']}',
+				'{$_data['color_red']}',
+				'{$_data['color_green']}',
+				'{$_data['color_blue']}',
 				'{$_data['date']}'
 			)
 		";

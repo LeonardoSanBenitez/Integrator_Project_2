@@ -15,12 +15,14 @@
 #define MOTOR_OFF 0
 #define MOTOR_ON  150
 
-/** GLOBAL VARIABLES **/
+/** GLOBAL VARIABLES **/ //TODO: criar uma função main()
 char state = 0; // To the state machine
 char team[]="Elvis";
 char instaled[]="LTPA";
 int altura;
-int color;
+int color = 1;
+int red, green, blue, clean;
+int nr, ng, nb;//TODO: remove
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };  // assign a MAC address for the ethernet controller.
 char server[] = "pi2engenharia.000webhostapp.com";
@@ -30,7 +32,6 @@ IPAddress ip(145, 14, 145, 236);            // Set the static IP address to use 
 /** RESOURCE DECLARATIONS **/
 EthernetClient client;
 LiquidCrystal lcd(30, 32, 34, 36, 38, 40);          //Define os pinos que serão utilizados para ligação ao display
-Ultrasonic ultrasonic(pino_trigger, pino_echo);     //Inicializa o sensor nos pinos definidos acima
 
 /*---------------------------------------------------------------------
   SETUP
@@ -41,7 +42,20 @@ void setup() {
   pinMode(INFRA_3, INPUT);
   pinMode(MOTOR_A, OUTPUT);
   pinMode(BUZZER, OUTPUT);
+  
+  pinMode(TRIGGER_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  
+  pinMode (S0, OUTPUT);
+  pinMode (S1, OUTPUT);
+  pinMode (S2, OUTPUT);
+  pinMode (S3, OUTPUT);
+  pinMode (OUT, INPUT);
 
+  digitalWrite (S0, LOW);
+  digitalWrite (S1, HIGH);
+
+  digitalWrite(TRIGGER_PIN, LOW);
   analogWrite(MOTOR_A, MOTOR_OFF);
 
   /** SERIAL INIT **/
@@ -70,6 +84,10 @@ void setup() {
   LOOP
 ---------------------------------------------------------------------*/
 void loop() {
+  /* Local variables */
+  int red, green, blue, clean;
+  int nr, ng, nb;
+  
   delay(20);
   switch (state) {
     /** State Wait: will do nothing until the infrared sensor 1 (positioned in the begin of the conveyor) detect the object*/
@@ -96,23 +114,38 @@ void loop() {
     
     /** State Read Color: just call the read_color() funcion*/
     case READ_COLOR:
-      color = read_color();
+      read_color (&red, &green, &blue, &clean);
+      nr = (int)255*1.23*(float)clean/red;
+      ng = (int)255*1.18*(float)clean/green;
+      nb = (int)255*1.4*(float)clean/blue;
+      
       lcd.setCursor(0, 1);                  // (column 0) of the second line (line 1):
       lcd.clear();
-      lcd.print ("Cor: ");                 //print in LCD
-      lcd.print (color);  
-      Serial.print("Color: ");
-      Serial.println(read_color() == 1 ? "red" : "blue");
+      lcd.print ("Cor: ?");                 //print in LCD
+      Serial.print ("COLOR: rgb("); 
+      Serial.print (nr);
+      Serial.print (", ");
+      Serial.print (ng);
+      Serial.print (", ");
+      Serial.print (nb);
+      Serial.println (")");
+      Serial.println("");
       state = READ_HEIGHT;
       break;
     
     /** State read height: just call the read_height() function. Does not calculates the volume, that is done in the server */
     case READ_HEIGHT:
-      altura = 10*ultrasonic.convert(ultrasonic.timing(), Ultrasonic::CM);
+      digitalWrite(TRIGGER_PIN, LOW);
+      delayMicroseconds(2);
+      digitalWrite(TRIGGER_PIN, HIGH);// Sets the trigPin on HIGH state for 10 micro seconds
+      delayMicroseconds(1000);
+      digitalWrite(TRIGGER_PIN, LOW);
+      altura= 137 - pulseIn(ECHO_PIN, HIGH)*0.34/2;// Reads the echoPin (returns the sound wave travel time in microseconds). Calculate the distance.
+      if (altura<0 || altura>500) altura = 0;
       lcd.setCursor(0, 2);                  // (column 0) of the second line (line 1):
       lcd.print ("altura: ");                 //print in LCD
       lcd.print (altura);        
-      Serial.print("Altura lida (em cm):"); //Print in serial
+      Serial.print("Altura lida (em mm):"); //Print in serial
       Serial.println(altura);
       delay(1000); 
       analogWrite(MOTOR_A, MOTOR_ON);
@@ -151,11 +184,30 @@ void sound_alert() {
 /*---------------------------------------------------------------------
   FUNCTION READ COLOR
   Sensor used: TCS 230
-  Return: 1=red, 2=blue, 3=green
+  Return: Pulse in return an unsigned long with the length of the pulse (in microseconds). 
   ---------------------------------------------------------------------*/
-int read_color() {
-  return 1;
+void read_color(int* red, int* green, int* blue, int* clean){
+  /* Red Filter */
+  digitalWrite(S2, LOW);
+  digitalWrite(S3, LOW);
+  *red = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH);
+
+  /* Green Filter */
+  digitalWrite(S2, HIGH);
+  digitalWrite(S3, HIGH);
+  *green = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH);
+  
+  /* Blue Filter */
+  digitalWrite(S2, LOW);
+  digitalWrite(S3, HIGH);
+  *blue = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH);
+
+  /* Clean Filter */
+  digitalWrite(S2, HIGH);
+  digitalWrite(S3, LOW);
+  *clean = pulseIn(OUT, digitalRead(OUT) == HIGH ? LOW : HIGH);
 }
+
 
 /*---------------------------------------------------------------------
   FUNCTION HTTP REQUEST
@@ -176,7 +228,7 @@ void httpRequest() {
     client.print(team);
     client.print("&instaled=");
     client.print(instaled);
-    client.print("&volume=");
+    client.print("&altura=");
     client.print(altura);
     client.print("ml");
     client.print("&color=");
