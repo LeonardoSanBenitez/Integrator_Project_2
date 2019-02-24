@@ -1,10 +1,3 @@
-change orange color
-diminuir transtion do logo
-adicionar transition: 0,02s do tableLine:hover
-ajustar margin-top do button quando width<768px
-adicionar página "home" e "fotos"
-Melhor o brand PI2
-
 CREATE TABLE raw_data (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     team VARCHAR(20) NOT NULL,

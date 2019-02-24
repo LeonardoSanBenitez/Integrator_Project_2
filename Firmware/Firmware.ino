@@ -1,4 +1,4 @@
-#include <Ultrasonic.h>     //Carrega a biblioteca do sensor ultrassonico
+//#include <Ultrasonic.h>     //Carrega a biblioteca do sensor ultrassonico
 #include <LiquidCrystal.h>  //Carrega a biblioteca LiquidCrystal
 #include <SPI.h>      //to ethernet
 #include <Ethernet.h>
